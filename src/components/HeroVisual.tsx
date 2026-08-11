@@ -14,7 +14,7 @@ export function HeroVisual() {
         };
 
   return (
-    <div className="relative mx-auto w-full max-w-[560px] aspect-[5/6] sm:max-w-[600px]">
+    <div className="relative mx-auto w-full max-w-[520px] aspect-[5/6] sm:max-w-[560px] lg:max-w-[600px]">
       {/* Backdrop glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-1/3 h-[60%] w-[60%] -translate-x-1/2 rounded-full bg-tech-500/20 blur-[120px]" />
@@ -34,13 +34,8 @@ export function HeroVisual() {
               <stop offset="0%" stopColor="rgba(31,124,223,0.6)" />
               <stop offset="100%" stopColor="rgba(31,124,223,0.0)" />
             </linearGradient>
-            <linearGradient id="ring2" x1="1" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="rgba(31,124,223,0.45)" />
-              <stop offset="100%" stopColor="rgba(31,124,223,0.0)" />
-            </linearGradient>
           </defs>
           <circle cx="300" cy="300" r="288" fill="none" stroke="url(#ring)" strokeWidth="1.2" />
-          <circle cx="300" cy="300" r="232" fill="none" stroke="url(#ring2)" strokeWidth="1" strokeDasharray="2 6" />
           <circle cx="300" cy="300" r="176" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
         </svg>
       </motion.div>
@@ -97,7 +92,7 @@ export function HeroVisual() {
       {/* Floating mini-cards */}
       <motion.div
         {...anim(0.45)}
-        className="absolute left-0 top-[10%] w-[58%] max-w-[230px] sm:top-[8%]"
+        className="absolute left-0 top-[8%] w-[46%] max-w-[230px] sm:top-[10%] xl:w-[50%] xl:max-w-[270px]"
       >
         <div className="card-dark rounded-xl p-3.5">
           <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-tech-300">
@@ -118,7 +113,7 @@ export function HeroVisual() {
 
       <motion.div
         {...anim(0.55)}
-        className="absolute right-0 top-[18%] w-[55%] max-w-[220px]"
+        className="absolute right-0 top-[15%] w-[46%] max-w-[220px] sm:top-[18%] xl:w-[50%] xl:max-w-[260px]"
       >
         <div className="card-dark rounded-xl p-3.5">
           <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.18em] text-tech-300">
@@ -153,7 +148,7 @@ export function HeroVisual() {
 
       <motion.div
         {...anim(0.7)}
-        className="absolute bottom-[6%] left-[6%] w-[60%] max-w-[230px] sm:bottom-[4%]"
+        className="absolute bottom-[4%] left-[4%] w-[46%] max-w-[230px] sm:bottom-[6%] sm:left-[6%] xl:w-[50%] xl:max-w-[250px]"
       >
         <div className="card-dark rounded-xl p-3.5">
           <div className="flex items-center justify-between">
@@ -173,7 +168,7 @@ export function HeroVisual() {
 
       <motion.div
         {...anim(0.8)}
-        className="absolute bottom-[14%] right-[2%] w-[50%] max-w-[200px] sm:bottom-[16%]"
+        className="absolute bottom-[12%] right-[2%] w-[44%] max-w-[200px] sm:bottom-[14%] xl:w-[48%] xl:max-w-[240px]"
       >
         <div className="card-dark rounded-xl p-3.5">
           <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-tech-300">Crescimento</div>

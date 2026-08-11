@@ -29,7 +29,7 @@ export function Hero() {
       <div className="absolute inset-x-0 top-0 -z-10 h-[640px] bg-radial-glow" aria-hidden />
       <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" aria-hidden />
 
-      <div className="container-page grid items-center gap-12 pb-24 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-32">
+      <div className="container-page grid items-center gap-10 pb-20 md:gap-12 md:pb-24 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-32 xl:gap-20">
         <div className="relative">
           <motion.span
             {...stagger(0)}
