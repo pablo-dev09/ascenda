@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #020611;
+  --bg-elev: #051029;
+  --navy: #0a1e45;
+  --navy-deep: #051029;
+  --tech: #1f7cdf;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+  --text: #e7ecf3;
+  --text-muted: #9aa6bd;
+  --text-soft: #6c7894;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+::selection {
+  background: rgba(31, 124, 223, 0.35);
+  color: #ffffff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #020611;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #142b57, #0a1e45);
+  border-radius: 6px;
+  border: 2px solid #020611;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #1f7cdf, #0a60c2);
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid #1f7cdf;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[1280px] px-6 md:px-8;
+  }
+  .h-display {
+    @apply font-display font-semibold tracking-tightest;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-tech-300;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-tech-500 px-5 py-3 text-sm font-semibold text-white shadow-glow-tech transition-all duration-200 hover:bg-tech-400 hover:shadow-[0_0_0_1px_rgba(31,124,223,0.4),0_16px_48px_-12px_rgba(31,124,223,0.55)] active:scale-[0.985] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-400;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.02] px-5 py-3 text-sm font-semibold text-white/90 backdrop-blur transition-all duration-200 hover:border-white/30 hover:bg-white/[0.06] active:scale-[0.985];
+  }
+  .btn-link {
+    @apply inline-flex items-center gap-1.5 text-sm font-semibold text-tech-300 transition-colors hover:text-tech-200;
+  }
+  .card-dark {
+    @apply relative overflow-hidden rounded-2xl border border-white/[0.07] bg-gradient-to-b from-white/[0.03] to-white/[0.01] p-6 shadow-card-dark;
+  }
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: center;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+  .text-muted {
+    @apply text-white/60;
+  }
+  .text-soft {
+    @apply text-white/45;
+  }
+}
+
+/* Utility for an animated gradient ring (used sparingly) */
+.ring-tech {
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(31, 124, 223, 0.18) 0%, rgba(10, 30, 69, 0) 60%),
+    radial-gradient(120% 120% at 100% 100%, rgba(31, 124, 223, 0.12) 0%, rgba(2, 6, 17, 0) 60%);
+}
