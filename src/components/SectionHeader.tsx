@@ -22,8 +22,7 @@ export function SectionHeader({ eyebrow, title, description, align = 'left', cla
     >
       {eyebrow && (
         <Reveal>
-          <span className="eyebrow">
-            <span className="h-px w-6 bg-tech-400" />
+          <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-tech-300">
             {eyebrow}
           </span>
         </Reveal>

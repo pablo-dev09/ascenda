@@ -82,7 +82,7 @@ body {
     @apply font-display font-semibold tracking-tightest;
   }
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-tech-300;
+    @apply inline-flex items-center text-[11px] font-semibold uppercase tracking-[0.22em] text-tech-300;
   }
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-lg bg-tech-500 px-5 py-3 text-sm font-semibold text-white shadow-glow-tech transition-all duration-200 hover:bg-tech-400 hover:shadow-[0_0_0_1px_rgba(31,124,223,0.4),0_16px_48px_-12px_rgba(31,124,223,0.55)] active:scale-[0.985] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-400;

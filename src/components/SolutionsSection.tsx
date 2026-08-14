@@ -1,159 +1,44 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { GlobeIcon, CpuIcon, BoltIcon, LinkIcon, ChartIcon, LayersIcon } from './Icon';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowRightIcon, CheckIcon, WhatsappIcon } from './Icon';
+import { Reveal } from './Reveal';
 import { SectionHeader } from './SectionHeader';
-import { Stagger, itemVariants } from './Reveal';
-import type { ComponentType, SVGProps } from 'react';
+import { WHATSAPP_URL } from '@/lib/constants';
+import { Bot3D } from './Bot3D';
+import { BotActivityCards } from './BotActivityCards';
 
-type Item = {
-  n: string;
-  title: string;
-  text: string;
-  icon: ComponentType<SVGProps<SVGSVGElement> & { size?: number }>;
-  visual: 'globe' | 'cpu' | 'bolt' | 'link' | 'chart' | 'layers';
-};
-
-const ITEMS: Item[] = [
-  {
-    n: '01',
-    title: 'Sites profissionais',
-    text: 'Sites modernos, rápidos e responsivos para fortalecer a presença digital da sua empresa.',
-    icon: GlobeIcon,
-    visual: 'globe',
-  },
-  {
-    n: '02',
-    title: 'Sistemas personalizados',
-    text: 'Sistemas desenvolvidos de acordo com as necessidades específicas de cada negócio.',
-    icon: CpuIcon,
-    visual: 'cpu',
-  },
-  {
-    n: '03',
-    title: 'Automação',
-    text: 'Automatize tarefas repetitivas e torne sua operação mais eficiente.',
-    icon: BoltIcon,
-    visual: 'bolt',
-  },
-  {
-    n: '04',
-    title: 'Integrações',
-    text: 'Conecte ferramentas, sistemas e processos para trabalhar de forma mais inteligente.',
-    icon: LinkIcon,
-    visual: 'link',
-  },
-  {
-    n: '05',
-    title: 'Dashboards e dados',
-    text: 'Transforme informações do seu negócio em dados úteis para tomada de decisões.',
-    icon: ChartIcon,
-    visual: 'chart',
-  },
-  {
-    n: '06',
-    title: 'Soluções digitais',
-    text: 'Projetos personalizados para problemas que não cabem em soluções prontas.',
-    icon: LayersIcon,
-    visual: 'layers',
-  },
+const DEVELOPMENT_TYPES = [
+  'Sites institucionais',
+  'Landing pages',
+  'Sistemas web',
+  'Aplicativos',
+  'Plataformas personalizadas',
+  'Dashboards',
 ];
 
-function Visual({ kind }: { kind: Item['visual'] }) {
-  switch (kind) {
-    case 'globe':
-      return (
-        <svg viewBox="0 0 120 80" className="h-16 w-full text-tech-300/80" aria-hidden>
-          <defs>
-            <linearGradient id="vg1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#1f7cdf" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#1f7cdf" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <rect x="6" y="14" width="108" height="60" rx="6" fill="none" stroke="currentColor" strokeOpacity="0.4" />
-          <rect x="6" y="14" width="108" height="14" fill="url(#vg1)" />
-          <circle cx="14" cy="21" r="1.6" fill="currentColor" />
-          <circle cx="22" cy="21" r="1.6" fill="currentColor" opacity="0.6" />
-          <circle cx="30" cy="21" r="1.6" fill="currentColor" opacity="0.4" />
-          <rect x="14" y="36" width="22" height="14" rx="2" fill="currentColor" opacity="0.25" />
-          <rect x="40" y="36" width="34" height="14" rx="2" fill="currentColor" opacity="0.15" />
-          <rect x="14" y="54" width="60" height="6" rx="2" fill="currentColor" opacity="0.3" />
-          <rect x="80" y="36" width="26" height="24" rx="2" fill="none" stroke="currentColor" strokeOpacity="0.5" />
-        </svg>
-      );
-    case 'cpu':
-      return (
-        <svg viewBox="0 0 120 80" className="h-16 w-full text-tech-300/80" aria-hidden>
-          <rect x="40" y="20" width="40" height="40" rx="4" fill="none" stroke="currentColor" strokeOpacity="0.6" />
-          <rect x="48" y="28" width="24" height="24" rx="2" fill="currentColor" opacity="0.25" />
-          {[0, 1, 2, 3].map((i) => (
-            <line key={`t${i}`} x1={48 + i * 8} y1="20" x2={48 + i * 8} y2="14" stroke="currentColor" strokeOpacity="0.6" />
-          ))}
-          {[0, 1, 2, 3].map((i) => (
-            <line key={`b${i}`} x1={48 + i * 8} y1="60" x2={48 + i * 8} y2="66" stroke="currentColor" strokeOpacity="0.6" />
-          ))}
-          {[0, 1, 2, 3].map((i) => (
-            <line key={`l${i}`} x1="40" y1={28 + i * 8} x2="34" y2={28 + i * 8} stroke="currentColor" strokeOpacity="0.6" />
-          ))}
-          {[0, 1, 2, 3].map((i) => (
-            <line key={`r${i}`} x1="80" y1={28 + i * 8} x2="86" y2={28 + i * 8} stroke="currentColor" strokeOpacity="0.6" />
-          ))}
-        </svg>
-      );
-    case 'bolt':
-      return (
-        <svg viewBox="0 0 120 80" className="h-16 w-full text-tech-300/80" aria-hidden>
-          <path d="M58 8 L40 42 L54 42 L48 72 L80 32 L64 32 L70 8 Z" fill="none" stroke="currentColor" strokeOpacity="0.7" strokeLinejoin="round" />
-          <circle cx="40" cy="42" r="2" fill="currentColor" />
-          <circle cx="80" cy="32" r="2" fill="currentColor" />
-        </svg>
-      );
-    case 'link':
-      return (
-        <svg viewBox="0 0 120 80" className="h-16 w-full text-tech-300/80" aria-hidden>
-          <circle cx="32" cy="40" r="14" fill="none" stroke="currentColor" strokeOpacity="0.6" />
-          <circle cx="60" cy="40" r="14" fill="none" stroke="currentColor" strokeOpacity="0.4" />
-          <circle cx="88" cy="40" r="14" fill="none" stroke="currentColor" strokeOpacity="0.6" />
-          <line x1="46" y1="40" x2="74" y2="40" stroke="currentColor" strokeOpacity="0.7" />
-        </svg>
-      );
-    case 'chart':
-      return (
-        <svg viewBox="0 0 120 80" className="h-16 w-full text-tech-300/80" aria-hidden>
-          <line x1="10" y1="70" x2="110" y2="70" stroke="currentColor" strokeOpacity="0.4" />
-          <line x1="10" y1="10" x2="10" y2="70" stroke="currentColor" strokeOpacity="0.4" />
-          {[
-            [20, 60],
-            [34, 50],
-            [48, 56],
-            [62, 36],
-            [76, 42],
-            [90, 22],
-            [104, 18],
-          ].map(([x, y], i) => (
-            <circle key={i} cx={x} cy={y} r="2.4" fill="currentColor" />
-          ))}
-          <path
-            d="M20 60 L34 50 L48 56 L62 36 L76 42 L90 22 L104 18"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
-    case 'layers':
-      return (
-        <svg viewBox="0 0 120 80" className="h-16 w-full text-tech-300/80" aria-hidden>
-          <path d="M60 12 L100 30 L60 48 L20 30 Z" fill="none" stroke="currentColor" strokeOpacity="0.7" strokeLinejoin="round" />
-          <path d="M20 44 L60 60 L100 44" fill="none" stroke="currentColor" strokeOpacity="0.5" strokeLinejoin="round" />
-          <path d="M20 58 L60 74 L100 58" fill="none" stroke="currentColor" strokeOpacity="0.3" strokeLinejoin="round" />
-        </svg>
-      );
-  }
-}
+const BOT_FEATURES = [
+  'Atendimento automático',
+  'Perguntas frequentes',
+  'Agendamento de reuniões',
+  'Cadastro de clientes',
+  'Envio de informações',
+  'Links de pagamento',
+  'Notificações',
+  'Integração com sistemas',
+  'Transferência para humano',
+  'Histórico de conversas',
+];
+
+const FLOW = [
+  { from: 'Cliente', text: 'Olá! Gostaria de marcar uma reunião.' },
+  { from: 'Assistente Ascenda', text: 'Claro! Temos horários amanhã às 14h e às 16h. Qual prefere?' },
+  { from: 'Cliente', text: '14h está ótimo.' },
+  { from: 'Assistente Ascenda', text: 'Perfeito. Reunião agendada ✓' },
+];
 
 export function SolutionsSection() {
+  const reduce = useReducedMotion();
   return (
     <section
       id="solucoes"
@@ -169,39 +54,308 @@ export function SolutionsSection() {
               Tecnologia sob medida para o tamanho do seu negócio.
             </span>
           }
-          description="A Ascenda cria soluções digitais profissionais, acessíveis e pensadas para resolver problemas reais."
+          description="A Ascenda entrega dois grandes pilares: desenvolvimento digital sob medida e automação inteligente com WhatsApp. Tudo construído para o seu momento."
         />
 
-        <Stagger className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {ITEMS.map((it) => {
-            const Icon = it.icon;
-            return (
-              <motion.article
-                key={it.n}
-                variants={itemVariants}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.25, ease: [0.2, 0.7, 0.2, 1] }}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.03] to-white/[0.005] p-6 transition-all hover:border-tech-500/40 hover:from-white/[0.05]"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-tech-300 transition-colors group-hover:border-tech-500/50 group-hover:text-tech-200">
-                    <Icon size={20} />
-                  </div>
-                  <span className="font-display text-xs font-semibold tracking-[0.18em] text-white/40">
-                    {it.n}
-                  </span>
-                </div>
-                <h3 className="mt-5 font-display text-xl font-semibold text-white">{it.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{it.text}</p>
-                <div className="mt-6 border-t border-white/[0.05] pt-5">
-                  <Visual kind={it.visual} />
-                </div>
-                <div className="pointer-events-none absolute -bottom-16 -right-12 h-40 w-40 rounded-full bg-tech-500/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
-              </motion.article>
-            );
-          })}
-        </Stagger>
+        <div className="mt-16 space-y-20 md:mt-20 md:space-y-28">
+          {/* SERVICE 01 — DEVELOPMENT */}
+          <ServiceDevelopment reduce={!!reduce} />
+
+          {/* SERVICE 02 — AUTOMATION + BOT */}
+          <ServiceAutomation reduce={!!reduce} />
+        </div>
       </div>
     </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* SERVICE 01 — Sites, sistemas e aplicativos                          */
+/* ------------------------------------------------------------------ */
+
+function ServiceDevelopment({ reduce }: { reduce: boolean }) {
+  return (
+    <article
+      aria-labelledby="service-dev-heading"
+      className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16"
+    >
+      <div>
+        <Reveal>
+          <div className="flex items-center gap-3">
+            <span className="font-display text-sm font-semibold tracking-[0.2em] text-tech-300">01</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55">Desenvolvimento digital</span>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.05}>
+          <h3 id="service-dev-heading" className="h-display mt-5 text-balance text-2xl leading-[1.15] text-white sm:text-3xl md:text-4xl">
+            Sites, sistemas e aplicativos.
+          </h3>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <p className="mt-5 text-pretty text-base text-muted sm:text-lg">
+            Construímos soluções digitais sob medida para empresas que querem ter uma presença digital profissional,
+            melhorar seus processos ou transformar uma ideia em um produto.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <ul className="mt-7 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+            {DEVELOPMENT_TYPES.map((it) => (
+              <li key={it} className="flex items-center gap-2.5 text-sm text-white/85">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full border border-tech-500/40 bg-tech-500/10 text-tech-200">
+                  <CheckIcon size={11} />
+                </span>
+                {it}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <div className="mt-8">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              Quero criar minha solução
+              <ArrowRightIcon size={16} />
+            </a>
+          </div>
+        </Reveal>
+      </div>
+
+      {/* Visual: stacked device mockups */}
+      <Reveal delay={0.1} className="relative mx-auto w-full max-w-[520px]">
+        <DeviceMockup />
+      </Reveal>
+    </article>
+  );
+}
+
+function DeviceMockup() {
+  const reduce = useReducedMotion();
+  return (
+    <div className="relative aspect-[5/4] w-full">
+      {/* Background grid */}
+      <div className="absolute inset-0 grid-bg opacity-50" aria-hidden />
+      <div
+        className="pointer-events-none absolute -right-10 top-10 h-40 w-40 rounded-full bg-tech-500/15 blur-3xl"
+        aria-hidden
+      />
+
+      {/* Browser window (back) */}
+      <motion.div
+        initial={reduce ? false : { opacity: 0, y: 20 }}
+        whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: [0.2, 0.7, 0.2, 1] }}
+        className="absolute left-0 top-[8%] w-[78%]"
+      >
+        <div className="overflow-hidden rounded-xl border border-white/10 bg-navy-900/95 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)]">
+          <div className="flex items-center gap-1.5 border-b border-white/[0.06] bg-white/[0.02] px-3 py-2">
+            <span className="h-2 w-2 rounded-full bg-white/15" />
+            <span className="h-2 w-2 rounded-full bg-white/15" />
+            <span className="h-2 w-2 rounded-full bg-white/15" />
+            <div className="ml-3 h-3 w-32 rounded-full bg-white/[0.05]" />
+          </div>
+          <div className="p-4">
+            <div className="flex items-center gap-3">
+              <div className="h-8 w-8 rounded-md bg-gradient-to-br from-tech-500/40 to-tech-300/10" />
+              <div className="space-y-1.5">
+                <div className="h-2 w-24 rounded-full bg-white/30" />
+                <div className="h-1.5 w-16 rounded-full bg-white/15" />
+              </div>
+            </div>
+            <div className="mt-4 space-y-2">
+              <div className="h-1.5 w-full rounded-full bg-white/[0.08]" />
+              <div className="h-1.5 w-5/6 rounded-full bg-white/[0.08]" />
+              <div className="h-1.5 w-4/6 rounded-full bg-white/[0.08]" />
+            </div>
+            <div className="mt-4 grid grid-cols-3 gap-2">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="rounded-md border border-white/[0.06] bg-white/[0.02] p-2">
+                  <div className="h-1.5 w-2/3 rounded-full bg-tech-300/60" />
+                  <div className="mt-1.5 h-5 rounded bg-white/[0.06]" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Phone (front, overlapping) */}
+      <motion.div
+        initial={reduce ? false : { opacity: 0, y: 20 }}
+        whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
+        className="absolute bottom-0 right-0 w-[40%]"
+      >
+        <div className="overflow-hidden rounded-[22px] border border-white/10 bg-navy-900 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)]">
+          <div className="flex justify-center border-b border-white/[0.06] bg-white/[0.02] py-1.5">
+            <span className="h-1 w-10 rounded-full bg-white/20" />
+          </div>
+          <div className="space-y-2 p-2.5">
+            <div className="flex items-center gap-1.5">
+              <div className="h-4 w-4 rounded bg-gradient-to-br from-tech-500/40 to-tech-300/10" />
+              <div className="h-1.5 flex-1 rounded-full bg-white/15" />
+            </div>
+            <div className="rounded-md border border-white/[0.06] bg-white/[0.02] p-2">
+              <div className="h-1.5 w-1/2 rounded-full bg-white/30" />
+              <div className="mt-1.5 h-6 rounded bg-tech-500/15" />
+            </div>
+            <div className="grid grid-cols-2 gap-1.5">
+              <div className="rounded-md border border-white/[0.06] bg-white/[0.02] p-1.5">
+                <div className="h-1 w-1/2 rounded-full bg-white/20" />
+                <div className="mt-1 h-4 rounded bg-white/[0.05]" />
+              </div>
+              <div className="rounded-md border border-white/[0.06] bg-white/[0.02] p-1.5">
+                <div className="h-1 w-1/2 rounded-full bg-white/20" />
+                <div className="mt-1 h-4 rounded bg-white/[0.05]" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Dashboard floating chip (back) */}
+      <motion.div
+        initial={reduce ? false : { opacity: 0, scale: 0.9 }}
+        whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, delay: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
+        className="absolute right-[8%] top-0 hidden rounded-lg border border-white/10 bg-navy-900/95 px-3 py-2 shadow-lg sm:block"
+      >
+        <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-tech-300">Dashboard</div>
+        <div className="mt-1 flex h-8 items-end gap-0.5">
+          {[6, 10, 8, 14, 12, 18, 16].map((h, i) => (
+            <span
+              key={i}
+              className="block w-1.5 origin-bottom rounded-sm bg-gradient-to-t from-tech-700/40 to-tech-300"
+              style={{ height: `${h}px` }}
+            />
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* SERVICE 02 — Automações e bot para WhatsApp                          */
+/* ------------------------------------------------------------------ */
+
+function ServiceAutomation({ reduce }: { reduce: boolean }) {
+  return (
+    <article
+      aria-labelledby="service-bot-heading"
+      className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16"
+    >
+      <div>
+        <Reveal>
+          <div className="flex items-center gap-3">
+            <span className="font-display text-sm font-semibold tracking-[0.2em] text-tech-300">02</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55">Automação inteligente</span>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.05}>
+          <h3 id="service-bot-heading" className="h-display mt-5 text-balance text-2xl leading-[1.15] text-white sm:text-3xl md:text-4xl">
+            Automações e bot inteligente para WhatsApp.
+          </h3>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <p className="mt-5 text-pretty text-base text-muted sm:text-lg">
+            Transforme o WhatsApp em um assistente digital capaz de atender clientes, organizar informações,
+            executar tarefas e integrar sistemas — tudo no automático.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <p className="mt-3 text-sm text-white/55">
+            Cada projeto é personalizado. As capacidades abaixo são desenvolvidas sob medida para a sua operação.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.18}>
+          <ul className="mt-7 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+            {BOT_FEATURES.slice(0, 8).map((it) => (
+              <li key={it} className="flex items-center gap-2.5 text-sm text-white/85">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full border border-tech-500/40 bg-tech-500/10 text-tech-200">
+                  <CheckIcon size={11} />
+                </span>
+                {it}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal delay={0.22}>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              <WhatsappIcon size={16} />
+              Quero automatizar meu negócio
+            </a>
+            <a href="#fluxo" className="btn-link">
+              Ver exemplo de fluxo
+              <ArrowRightIcon size={14} />
+            </a>
+          </div>
+        </Reveal>
+      </div>
+
+      {/* Visual: bot + activity cards + flow */}
+      <Reveal delay={0.1} className="relative mx-auto w-full max-w-[560px]">
+        <div className="relative aspect-square w-full">
+          <Bot3D />
+          <BotActivityCards />
+        </div>
+
+        {/* Flow card below the bot */}
+        <FlowCard />
+      </Reveal>
+    </article>
+  );
+}
+
+function FlowCard() {
+  return (
+    <div
+      id="fluxo"
+      className="mt-8 rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.03] to-white/[0.01] p-5"
+    >
+      <div className="flex items-center gap-2">
+        <span className="h-1.5 w-1.5 rounded-full bg-tech-300" />
+        <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-tech-300">
+          Exemplo de atendimento
+        </span>
+      </div>
+      <ol className="mt-4 space-y-2.5">
+        {FLOW.map((m, i) => (
+          <li
+            key={i}
+            className={`flex gap-3 rounded-lg border p-2.5 text-xs ${
+              m.from === 'Cliente'
+                ? 'border-white/[0.06] bg-white/[0.02]'
+                : 'border-tech-500/30 bg-tech-500/[0.06]'
+            }`}
+          >
+            <div
+              className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold ${
+                m.from === 'Cliente' ? 'bg-white/[0.06] text-white/80' : 'bg-tech-500/20 text-tech-200'
+              }`}
+            >
+              {m.from === 'Cliente' ? 'C' : 'A'}
+            </div>
+            <div>
+              <div className={`text-[10px] font-semibold uppercase tracking-[0.16em] ${m.from === 'Cliente' ? 'text-white/55' : 'text-tech-300'}`}>
+                {m.from}
+              </div>
+              <div className="mt-0.5 text-white/90">{m.text}</div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }

@@ -45,9 +45,9 @@ export function FinalCTA() {
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="eyebrow"
+            className="text-[11px] font-semibold uppercase tracking-[0.22em] text-tech-300"
           >
-            <span className="h-1 w-6 bg-tech-400" /> Vamos conversar
+            Vamos conversar
           </motion.span>
 
           <motion.h2

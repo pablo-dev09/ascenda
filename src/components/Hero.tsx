@@ -33,9 +33,9 @@ export function Hero() {
         <div className="relative">
           <motion.span
             {...stagger(0)}
-            className="eyebrow"
+            className="text-[11px] font-semibold uppercase tracking-[0.22em] text-tech-300"
           >
-            <span className="h-1 w-6 bg-tech-400" /> Startup de tecnologia · Brasil
+            Startup de tecnologia · Brasil
           </motion.span>
 
           <motion.h1
