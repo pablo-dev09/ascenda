@@ -23,9 +23,32 @@ export function Hero() {
       className="relative isolate overflow-hidden pt-28 md:pt-36 lg:pt-40"
       aria-labelledby="hero-heading"
     >
-      {/* Background layers */}
-      <div className="absolute inset-0 -z-10 bg-navy-950" aria-hidden />
-      <div className="absolute inset-0 -z-10 grid-bg opacity-70" aria-hidden />
+      {/* Video background — deepest layer, autoplay muted loop */}
+      <div className="absolute inset-0 -z-20 overflow-hidden bg-navy-950" aria-hidden>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/og-cover.png"
+          disablePictureInPicture
+          disableRemotePlayback
+          className="h-full w-full object-cover object-center"
+          aria-hidden="true"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Subtle dark overlay — guarantees text legibility while keeping the video visible */}
+      <div
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-navy-950/70 via-navy-950/55 to-navy-950/80"
+        aria-hidden
+      />
+
+      {/* Existing decorative layers (kept for visual texture) */}
+      <div className="absolute inset-0 -z-10 grid-bg opacity-30" aria-hidden />
       <div className="absolute inset-x-0 top-0 -z-10 h-[640px] bg-radial-glow" aria-hidden />
       <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" aria-hidden />
 
