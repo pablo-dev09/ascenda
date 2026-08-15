@@ -2,19 +2,28 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRightIcon, WhatsappIcon } from './Icon';
-import { HeroVisual } from './HeroVisual';
 import { WHATSAPP_URL } from '@/lib/constants';
 
+/**
+ * Hero — text-only composition over the video background.
+ * The shield visual was removed for a cleaner, more cinematic look.
+ * Text is centered, slightly smaller, and fades in AFTER the video starts
+ * playing (delay tuned to let the user feel the video first).
+ */
 export function Hero() {
   const reduce = useReducedMotion();
   const ease = [0.2, 0.7, 0.2, 1] as [number, number, number, number];
+
+  // Cinematic delay: text appears after the video has had a moment to breathe.
+  // First item lands ~1.4s after load, with a short stagger between blocks.
+  const baseDelay = reduce ? 0 : 1.4;
   const stagger = (i: number) =>
     reduce
       ? undefined
       : {
-          initial: { opacity: 0, y: 18 },
+          initial: { opacity: 0, y: 16 },
           animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.6, delay: 0.1 + i * 0.08, ease },
+          transition: { duration: 0.7, delay: baseDelay + i * 0.12, ease },
         };
 
   return (
@@ -52,8 +61,8 @@ export function Hero() {
       <div className="absolute inset-x-0 top-0 -z-10 h-[640px] bg-radial-glow" aria-hidden />
       <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" aria-hidden />
 
-      <div className="container-page grid items-center gap-10 pb-20 md:gap-12 md:pb-24 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-32 xl:gap-20">
-        <div className="relative">
+      <div className="container-page flex flex-col items-center pb-20 md:pb-24 lg:pb-32">
+        <div className="relative max-w-3xl text-center">
           <motion.span
             {...stagger(0)}
             className="text-[11px] font-semibold uppercase tracking-[0.22em] text-tech-300"
@@ -64,7 +73,7 @@ export function Hero() {
           <motion.h1
             id="hero-heading"
             {...stagger(1)}
-            className="h-display mt-5 text-balance text-[40px] leading-[1.05] sm:text-5xl md:text-6xl lg:text-[68px]"
+            className="h-display mx-auto mt-5 max-w-2xl text-balance text-[32px] leading-[1.1] sm:text-4xl md:text-[44px] lg:text-[52px]"
           >
             <span className="text-white">Tecnologia que </span>
             <span className="bg-gradient-to-r from-tech-200 via-tech-300 to-tech-400 bg-clip-text text-transparent">
@@ -79,14 +88,14 @@ export function Hero() {
 
           <motion.p
             {...stagger(2)}
-            className="mt-6 max-w-xl text-pretty text-base text-white/70 sm:text-lg"
+            className="mx-auto mt-5 max-w-xl text-pretty text-sm text-white/70 sm:text-base"
           >
             Tecnologia profissional, segura e acessível para pequenas empresas que querem evoluir.
           </motion.p>
 
           <motion.div
             {...stagger(3)}
-            className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+            className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row"
           >
             <a href="#solucoes" className="btn-primary">
               Conheça nossas soluções
@@ -105,7 +114,7 @@ export function Hero() {
 
           <motion.div
             {...stagger(4)}
-            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-white/55"
+            className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/55"
           >
             <span className="inline-flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-tech-300" /> Atendimento próximo
@@ -118,15 +127,6 @@ export function Hero() {
             </span>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          animate={reduce ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease }}
-          className="relative"
-        >
-          <HeroVisual />
-        </motion.div>
       </div>
     </section>
   );
