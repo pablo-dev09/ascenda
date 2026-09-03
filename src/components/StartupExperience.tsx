@@ -16,7 +16,6 @@ import {
   Cloud,
   Code2,
   Database,
-  Gauge,
   Github,
   Globe2,
   Instagram,
@@ -24,9 +23,7 @@ import {
   Linkedin,
   Mail,
   MessageCircle,
-  Network,
   Phone,
-  Rocket,
   ShieldCheck,
   Sparkles,
   Target,
@@ -446,14 +443,52 @@ function AboutSection() {
           </Fade>
         </div>
         <Fade delay={0.08}>
-          <div className="relative mx-auto aspect-square w-full max-w-[500px] overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#020714] p-7">
-            <div className="site-grid absolute inset-0 opacity-50" aria-hidden />
-            <div className="absolute inset-[14%] rounded-full border border-tech-300/15" /><div className="absolute inset-[25%] rounded-full border border-tech-300/25" />
-            <div className="absolute inset-0 flex items-center justify-center"><div className="flex h-28 w-28 items-center justify-center rounded-[30px] border border-tech-300/30 bg-tech-400/10 shadow-[0_0_70px_rgba(47,140,255,.25)]"><Logo size={74} withWordmark={false} /></div></div>
-            {[{ top: '13%', left: '13%', icon: ShieldCheck }, { top: '15%', right: '12%', icon: Network }, { bottom: '13%', left: '15%', icon: Gauge }, { bottom: '13%', right: '14%', icon: Rocket }].map((node, index) => {
-              const Icon = node.icon;
-              return <motion.span key={index} animate={{ y: [0, -6, 0] }} transition={{ duration: 3.5 + index * 0.4, repeat: Infinity, ease: 'easeInOut' }} style={node} className="absolute flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#07132b] text-tech-200 shadow-xl"><Icon size={20} /></motion.span>;
-            })}
+          <div className="relative mx-auto w-full max-w-[520px] overflow-hidden rounded-[32px] border border-tech-300/20 bg-[#020714] p-5 shadow-[0_35px_100px_rgba(0,0,0,.32)] sm:p-7">
+            <div className="site-grid absolute inset-0 opacity-35" aria-hidden />
+            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-tech-500/15 blur-[80px]" aria-hidden />
+            <Logo size={260} withWordmark={false} className="pointer-events-none absolute -bottom-20 -right-14 opacity-[0.035]" />
+
+            <div className="relative">
+              <div className="flex items-center justify-between gap-4 border-b border-white/[0.08] pb-5">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-tech-300/25 bg-tech-400/10 shadow-[0_0_35px_rgba(47,140,255,.2)]">
+                    <Logo size={34} withWordmark={false} />
+                  </span>
+                  <div>
+                    <p className="font-display text-sm font-semibold text-white">Manifesto Ascenda</p>
+                    <p className="mt-1 text-[10px] uppercase tracking-[.17em] text-white/35">Nosso jeito de construir</p>
+                  </div>
+                </div>
+                <span className="hidden rounded-full border border-emerald-300/20 bg-emerald-300/[0.07] px-3 py-2 text-[9px] font-semibold uppercase tracking-[.13em] text-emerald-300 sm:inline-flex">Feito lado a lado</span>
+              </div>
+
+              <blockquote className="py-9 sm:py-11">
+                <span className="font-display text-5xl leading-none text-tech-300/55">“</span>
+                <p className="-mt-3 max-w-md font-display text-2xl font-semibold leading-[1.18] text-white sm:text-[30px]">
+                  Antes de pensar em tecnologia, a gente <span className="text-gradient">escuta o seu negócio.</span>
+                </p>
+                <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/45">É assim que uma solução deixa de ser apenas digital e passa a fazer sentido para quem está do outro lado.</p>
+              </blockquote>
+
+              <div className="grid gap-2 sm:grid-cols-3">
+                {[
+                  { n: '01', title: 'Ouvir', text: 'a sua realidade' },
+                  { n: '02', title: 'Construir', text: 'junto com você' },
+                  { n: '03', title: 'Evoluir', text: 'com o negócio' },
+                ].map((step) => (
+                  <div key={step.n} className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 transition duration-300 hover:border-tech-300/30 hover:bg-tech-400/[0.07]">
+                    <span className="font-display text-[9px] font-bold tracking-[.16em] text-tech-300">{step.n}</span>
+                    <p className="mt-4 font-display text-sm font-semibold text-white">{step.title}</p>
+                    <p className="mt-1 text-[10px] text-white/38">{step.text}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 flex items-center justify-between gap-4 border-t border-white/[0.08] pt-5">
+                <p className="text-xs font-medium text-white/55">— Time Ascenda</p>
+                <span className="flex items-center gap-2 text-[10px] font-medium text-tech-200"><Sparkles size={13} /> Tecnologia com propósito</span>
+              </div>
+            </div>
           </div>
         </Fade>
       </div>
