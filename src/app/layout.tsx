@@ -19,7 +19,7 @@ const poppins = Poppins({
 const SITE_URL = 'https://ascenda.com.br';
 const TITLE = 'Ascenda | Soluções Digitais para Pequenas Empresas';
 const DESCRIPTION =
-  'A Ascenda cria soluções digitais acessíveis, seguras e personalizadas para pequenas empresas que querem crescer.';
+  'A Ascenda cria sites, sistemas, automações e estratégias digitais acessíveis, seguras e personalizadas para pequenas empresas que querem crescer.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -41,6 +41,8 @@ export const metadata: Metadata = {
     'sites profissionais',
     'automação',
     'sistemas personalizados',
+    'tráfego pago',
+    'gestão de redes sociais',
     'startup tecnologia brasil',
   ],
   alternates: { canonical: SITE_URL },

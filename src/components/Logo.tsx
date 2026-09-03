@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import Image from 'next/image';
 
 type Props = {
   size?: number;
@@ -20,7 +21,7 @@ export function Logo({ size = 36, withWordmark = true, className, variant = 'lig
         style={{ width: size, height: size }}
         aria-hidden
       >
-        <img
+        <Image
           src={variant === 'dark' ? '/logo-navy.jpeg' : '/logo-transparent.jpeg'}
           alt=""
           width={size}

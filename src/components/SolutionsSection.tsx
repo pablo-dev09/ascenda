@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRightIcon, CheckIcon, WhatsappIcon } from './Icon';
+import { ArrowRightIcon, ChartIcon, CheckIcon, LayersIcon, WhatsappIcon } from './Icon';
 import { Reveal } from './Reveal';
 import { SectionHeader } from './SectionHeader';
 import { WHATSAPP_URL } from '@/lib/constants';
@@ -54,7 +54,7 @@ export function SolutionsSection() {
               Tecnologia sob medida para o tamanho do seu negócio.
             </span>
           }
-          description="A Ascenda entrega dois grandes pilares: desenvolvimento digital sob medida e automação inteligente com WhatsApp. Tudo construído para o seu momento."
+          description="Desenvolvimento sob medida, automação inteligente e marketing digital para fortalecer sua operação e sua presença no mercado."
         />
 
         <div className="mt-16 space-y-20 md:mt-20 md:space-y-28">
@@ -63,9 +63,139 @@ export function SolutionsSection() {
 
           {/* SERVICE 02 — AUTOMATION + BOT */}
           <ServiceAutomation reduce={!!reduce} />
+
+          {/* SERVICE 03 — SOCIAL MEDIA + PAID TRAFFIC */}
+          <ServiceSocialAds />
         </div>
       </div>
     </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* SERVICE 03 — Redes sociais e tráfego pago                          */
+/* ------------------------------------------------------------------ */
+
+function ServiceSocialAds() {
+  return (
+    <article
+      aria-labelledby="service-social-heading"
+      className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16"
+    >
+      <div>
+        <Reveal>
+          <div className="flex items-center gap-3">
+            <span className="font-display text-sm font-semibold tracking-[0.2em] text-tech-300">03</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55">Marketing digital</span>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.05}>
+          <h3 id="service-social-heading" className="h-display mt-5 text-balance text-2xl leading-[1.15] text-white sm:text-3xl md:text-4xl">
+            Redes sociais e tráfego pago.
+          </h3>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <p className="mt-5 text-pretty text-base text-muted sm:text-lg">
+            Cuidamos da presença da sua marca e criamos campanhas para ampliar o alcance, atrair as pessoas certas e gerar novas oportunidades de contato.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <div className="mt-7 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-4">
+              <div className="flex items-center gap-2.5 text-sm font-semibold text-white">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-tech-500/10 text-tech-200">
+                  <LayersIcon size={17} />
+                </span>
+                Redes sociais
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-white/55">
+                Conteúdo e posicionamento para uma presença consistente e profissional.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-4">
+              <div className="flex items-center gap-2.5 text-sm font-semibold text-white">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-tech-500/10 text-tech-200">
+                  <ChartIcon size={17} />
+                </span>
+                Tráfego pago
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-white/55">
+                Campanhas estratégicas para aumentar a visibilidade e criar oportunidades.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <div className="mt-8">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              Quero fortalecer minha presença digital
+              <ArrowRightIcon size={16} />
+            </a>
+          </div>
+        </Reveal>
+      </div>
+
+      <Reveal delay={0.1} className="relative mx-auto w-full max-w-[520px]">
+        <GrowthVisual />
+      </Reveal>
+    </article>
+  );
+}
+
+function GrowthVisual() {
+  const reduce = useReducedMotion();
+  const steps = [
+    { label: 'Presença', value: 'Marca ativa e profissional' },
+    { label: 'Alcance', value: 'Mais pessoas certas' },
+    { label: 'Oportunidades', value: 'Novos contatos' },
+  ];
+
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.035] to-white/[0.01] p-5 shadow-card-dark sm:p-6">
+      <div className="absolute inset-0 grid-bg opacity-35" aria-hidden />
+      <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-tech-500/15 blur-3xl" aria-hidden />
+
+      <div className="relative">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-tech-300">Crescimento digital</div>
+            <div className="mt-1 text-sm font-semibold text-white">Da presença à oportunidade</div>
+          </div>
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-tech-500/30 bg-tech-500/10 text-tech-200">
+            <ChartIcon size={19} />
+          </span>
+        </div>
+
+        <div className="mt-7 flex h-28 items-end gap-2 rounded-xl border border-white/[0.06] bg-navy-900/70 p-4" aria-hidden>
+          {[34, 48, 43, 62, 76, 88].map((height, index) => (
+            <motion.span
+              key={height}
+              initial={reduce ? false : { height: 0, opacity: 0 }}
+              whileInView={reduce ? undefined : { height: `${height}%`, opacity: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.55, delay: index * 0.06, ease: [0.2, 0.7, 0.2, 1] }}
+              className="block flex-1 rounded-sm bg-gradient-to-t from-tech-700/35 to-tech-300"
+              style={reduce ? { height: `${height}%` } : undefined}
+            />
+          ))}
+        </div>
+
+        <ol className="mt-4 grid gap-2.5 sm:grid-cols-3">
+          {steps.map((step, index) => (
+            <li key={step.label} className="rounded-xl border border-white/[0.06] bg-white/[0.025] p-3">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-tech-300">0{index + 1}</div>
+              <div className="mt-2 text-sm font-semibold text-white">{step.label}</div>
+              <div className="mt-1 text-xs leading-relaxed text-white/45">{step.value}</div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
   );
 }
 
