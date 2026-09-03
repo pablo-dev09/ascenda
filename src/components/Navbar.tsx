@@ -31,11 +31,11 @@ export function Navbar() {
         className={`mx-auto flex h-16 max-w-[1180px] items-center justify-between rounded-2xl border px-4 transition-all duration-300 sm:px-5 ${
           scrolled
             ? 'border-white/10 bg-[#061127]/90 shadow-[0_18px_70px_rgba(0,0,0,.36)] backdrop-blur-xl'
-            : 'border-white/[0.08] bg-[#061127]/55 backdrop-blur-md'
+            : 'border-transparent bg-transparent'
         }`}
       >
         <a href="#inicio" aria-label="Ascenda — voltar ao início">
-          <Logo size={34} />
+          <Logo size={46} withWordmark={false} />
         </a>
 
         <nav aria-label="Navegação principal" className="hidden lg:block">

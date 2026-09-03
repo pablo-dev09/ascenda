@@ -22,7 +22,7 @@ export function Logo({ size = 36, withWordmark = true, className, variant = 'lig
         aria-hidden
       >
         <Image
-          src={variant === 'dark' ? '/logo-navy.jpeg' : '/logo-transparent.jpeg'}
+          src={variant === 'dark' ? '/logo-navy.jpeg' : '/logo-transparent.png'}
           alt=""
           width={size}
           height={size}
