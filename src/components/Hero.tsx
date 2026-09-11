@@ -1,13 +1,13 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, BarChart3, Bot, Check, Code2, MessageCircle, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Bot, Check, Code2, MessageCircle, ShieldCheck, Workflow } from 'lucide-react';
 import { WHATSAPP_URL } from '@/lib/constants';
 
 const SIGNALS = [
   { icon: Code2, label: 'Produto digital', value: 'Sob medida', detail: 'Sites, sistemas e aplicativos' },
   { icon: Bot, label: 'Automação', value: 'Sempre ativa', detail: 'WhatsApp e processos inteligentes' },
-  { icon: BarChart3, label: 'Crescimento', value: 'Com estratégia', detail: 'Redes sociais e tráfego pago' },
+  { icon: Workflow, label: 'Integração', value: 'Sem atrito', detail: 'Sistemas e processos conectados' },
 ];
 
 export function Hero() {

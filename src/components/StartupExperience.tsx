@@ -7,7 +7,6 @@ import type { LucideIcon } from 'lucide-react';
 import {
   ArrowRight,
   ArrowUpRight,
-  BarChart3,
   Bot,
   Check,
   CheckCircle2,
@@ -19,14 +18,12 @@ import {
   Github,
   Globe2,
   Instagram,
-  Layers3,
   Linkedin,
   Mail,
   MessageCircle,
   Phone,
   ShieldCheck,
   Sparkles,
-  Target,
   TrendingUp,
   Workflow,
   X,
@@ -218,7 +215,7 @@ function ServicesSection() {
           <SectionIntro
             eyebrow="Soluções"
             title={<>Tecnologia sob medida para o tamanho do seu negócio.</>}
-            text="Desenvolvimento sob medida, automação inteligente e marketing digital para fortalecer sua operação e sua presença no mercado."
+            text="Desenvolvimento sob medida e automação inteligente para fortalecer sua operação, organizar processos e acelerar a evolução do negócio."
           />
           <Fade delay={0.12}>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">Encontrar minha solução <ArrowUpRight size={17} /></a>
@@ -254,20 +251,7 @@ function ServicesSection() {
             </article>
           </Fade>
 
-          <Fade className="lg:col-span-5" delay={0.06}>
-            <article className="service-card flex h-full min-h-[510px] flex-col">
-              <ServiceTop n="03" label="Marketing digital" icon={BarChart3} />
-              <h3 className="h-display mt-10 text-3xl text-white">Redes sociais e tráfego pago.</h3>
-              <p className="mt-5 text-sm leading-relaxed text-white/55">Cuidamos da presença da sua marca e criamos campanhas para ampliar o alcance, atrair as pessoas certas e gerar novas oportunidades de contato.</p>
-              <div className="mt-8 grid gap-3">
-                <MiniService icon={Layers3} title="Redes sociais" text="Conteúdo e posicionamento para uma presença consistente e profissional." />
-                <MiniService icon={Target} title="Tráfego pago" text="Campanhas estratégicas para aumentar a visibilidade e criar oportunidades." />
-              </div>
-              <ServiceAction label="Fortalecer minha presença digital" />
-            </article>
-          </Fade>
-
-          <Fade className="lg:col-span-7" delay={0.12}>
+          <Fade className="lg:col-span-12" delay={0.12}>
             <article id="fluxo" className="service-card flex h-full min-h-[510px] flex-col">
               <div className="flex items-center justify-between gap-4">
                 <div>
@@ -349,10 +333,6 @@ function ChatPreview() {
       </div>
     </div>
   );
-}
-
-function MiniService({ icon: Icon, title, text }: { icon: LucideIcon; title: string; text: string }) {
-  return <div className="flex gap-4 rounded-2xl border border-white/[0.07] bg-[#020714]/60 p-4"><span className="mt-0.5 text-tech-300"><Icon size={19} /></span><div><h4 className="text-sm font-semibold text-white">{title}</h4><p className="mt-1.5 text-xs leading-relaxed text-white/42">{text}</p></div></div>;
 }
 
 function WhySection() {
@@ -582,7 +562,7 @@ function LeadSection() {
               <form onSubmit={handleSubmit} className="mt-8 space-y-4">
                 <label className="block"><span className="text-xs font-medium text-white/55">Seu nome</span><input required value={name} onChange={(event) => setName(event.target.value)} placeholder="Como podemos chamar você?" className="mt-2 w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-sm text-white placeholder:text-white/25 focus:border-tech-400/50 focus:outline-none" /></label>
                 <label className="block"><span className="text-xs font-medium text-white/55">Empresa <span className="text-white/25">(opcional)</span></span><input value={company} onChange={(event) => setCompany(event.target.value)} placeholder="Nome do seu negócio" className="mt-2 w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-sm text-white placeholder:text-white/25 focus:border-tech-400/50 focus:outline-none" /></label>
-                <label className="block"><span className="text-xs font-medium text-white/55">O que você procura?</span><select value={need} onChange={(event) => setNeed(event.target.value)} className="mt-2 w-full rounded-xl border border-white/10 bg-[#07132b] px-4 py-3.5 text-sm text-white/75 focus:border-tech-400/50 focus:outline-none"><option>Site, sistema ou aplicativo</option><option>Automação e bot para WhatsApp</option><option>Redes sociais e tráfego pago</option><option>Quero entender a melhor solução</option></select></label>
+                <label className="block"><span className="text-xs font-medium text-white/55">O que você procura?</span><select value={need} onChange={(event) => setNeed(event.target.value)} className="mt-2 w-full rounded-xl border border-white/10 bg-[#07132b] px-4 py-3.5 text-sm text-white/75 focus:border-tech-400/50 focus:outline-none"><option>Site, sistema ou aplicativo</option><option>Automação e bot para WhatsApp</option><option>Quero entender a melhor solução</option></select></label>
                 <button type="submit" className="btn-primary mt-2 w-full"><MessageCircle size={17} />Iniciar conversa<ArrowUpRight size={16} /></button>
               </form>
               <p className="mt-4 flex items-center justify-center gap-2 text-[10px] text-white/28"><ShieldCheck size={13} />Seus dados não ficam armazenados neste site.</p>
